@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
-        playfair: ["Playfair", "serif"],
+        pacifico: ["Pacifico", "cursive"],
       },
       colors: {
         mycelium: {

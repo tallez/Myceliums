@@ -18,4 +18,4 @@ You can use it on the lokal database, but not on the production one.
 
 # Open a new console and check if everything works !
 
-Launch the application with "yarn run dev".
+Launch the application with "yarn run dev"

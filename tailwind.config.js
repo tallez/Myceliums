@@ -9,6 +9,12 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        playfair: ["Playfair", "serif"],
+      },
+      colors: {
+        mycelium: {
+          100: "#d98b48",
+        },
       },
     },
   },

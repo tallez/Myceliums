@@ -1,14 +1,18 @@
 This is the repository for the website of the association "Myceliums".
 
+# Install the dependencies
+
+To do so, run "yarn install" in the root folder of the project.
+
 # Create the .env file ...
 
 ... and copy the content of .env.example in it.
 
 # Start Prisma and the Database
 
-To do so, run "yarn serve".
+Run "yarn serve".
 This command will set a local database running on your machine.
-To work on any other database, please fill the connection string in the .env file.
+To work on any other database, please update the connection string in the .env file.
 
 In a new terminal run "yarn set-prisma"
 This command will format the database and create the tables according to the models in prisma/schema.prisma.

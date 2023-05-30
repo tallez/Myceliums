@@ -7,6 +7,7 @@ import Document, {
   NextScript,
   DocumentContext,
 } from "next/document"
+import Fonts from "@components/Fonts"
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -23,6 +24,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
+        <Fonts />
         <body>
           <Main />
           <NextScript />

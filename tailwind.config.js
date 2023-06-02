@@ -8,8 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", ...defaultTheme.fontFamily.sans],
-        pacifico: ["Pacifico", "cursive"],
+        bitter: ["Bitter", "serif"],
       },
       colors: {
         mycelium: {

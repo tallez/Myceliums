@@ -7,6 +7,7 @@ import Document, {
   NextScript,
   DocumentContext,
 } from "next/document"
+
 import Fonts from "@components/Fonts"
 
 class MyDocument extends Document {

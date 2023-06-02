@@ -1,5 +1,7 @@
 import React from "react"
+
 import Head from "next/head"
+
 import Heading from "@components/Heading"
 
 export default function Home({ connected }) {
@@ -16,7 +18,7 @@ export default function Home({ connected }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex justify-center min-h-screen py-10 bg-mycelium-100">
+      <main className="flex min-h-screen justify-center bg-mycelium-100 py-10">
         <Heading />
       </main>
     </>

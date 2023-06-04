@@ -1,4 +1,3 @@
-import { Banner } from "@components/banners"
 import { DefaultActiveButton, DefaultDisabledButton } from "@components/buttons"
 import { DefaultCard, SecondaryCard, TertiaryCard } from "@components/cards"
 import Form from "@components/forms"
@@ -187,8 +186,6 @@ export default function GraphicChartPage() {
           <div className="grid grid-cols-3 gap-5">
             <Form title="Test Form" />
           </div>
-          <div className="my-6 text-2xl">Banners</div>
-          <Banner />
         </div>
       </main>
     </>

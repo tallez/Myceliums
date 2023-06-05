@@ -111,7 +111,7 @@ export default function Form({
 
   return (
     <form
-      className="grid grid-cols-1 gap-2 space-y-4 rounded-xl border border-gray-200 bg-white p-4 font-raleway font-light"
+      className="grid grid-cols-1 gap-2 space-y-4 rounded-xl bg-white p-4 font-raleway font-light"
       onSubmit={handleSubmit}
     >
       <h2 className="text-xl">{title}</h2>
@@ -179,7 +179,7 @@ export default function Form({
         </button>
       ) : (
         <button
-          className="rounded-lg border border-black bg-primary-500 p-2 font-raleway text-primary-100 hover:bg-primary-400 hover:text-primary-900 active:bg-primary-0"
+          className="rounded-lg bg-primary-500 p-2 font-raleway text-white hover:bg-primary-400 hover:text-primary-900 active:bg-primary-0"
           type="submit"
         >
           Submit
@@ -412,7 +412,7 @@ const CommonField = ({
         <p></p>
       )}
       <input
-        className="w-1/2 rounded-md border border-gray-300 p-2"
+        className="w-1/2 rounded-md border-none p-2 shadow-inner"
         type={field.type}
         name={field.name}
         placeholder={field.required ? `${field.label} *` : field.label}

@@ -6,12 +6,19 @@ import {
   LoadingIcon,
   PullRequestIcon,
   ValidateIcon,
+  WarnIcon,
 } from "@components/icons"
 import { NavBar } from "@components/navbars"
+import Editor from "@components/presentation/editor"
+import Viewer from "@components/presentation/viewer"
+import Head from "next/head"
 
 export default function GraphicChartPage() {
   return (
     <>
+      <Head>
+        <title>Graphic Chart</title>
+      </Head>
       <main className="flex min-h-screen flex-col space-y-10 p-10">
         <div className="flex flex-col space-y-4">
           <div className="font-raleway text-3xl font-bold"> Fonts </div>
@@ -136,6 +143,41 @@ export default function GraphicChartPage() {
                   Tertiary 100
                 </div>
               </div>
+
+              <div className="h-full w-full p-4">
+                Error-Color
+                <div className="my-4 flex w-full items-center justify-center">
+                  <div className="h-20 w-20 rounded-full bg-error-500"></div>
+                </div>
+              </div>
+              <div className="flex h-full w-full flex-col justify-between bg-error-500 p-4">
+                <div className="flex w-full justify-start">Error</div>
+                <div className="flex w-full justify-end">Error 500</div>
+              </div>
+              <div className="flex h-full w-full flex-col justify-between bg-error-990 p-4">
+                <div className="flex w-full justify-start text-error-500">
+                  On Error
+                </div>
+                <div className="flex w-full justify-end text-error-500">
+                  Error 100
+                </div>
+              </div>
+              <div className="flex h-full w-full flex-col justify-between bg-error-100 p-4">
+                <div className="flex w-full justify-start text-error-900">
+                  Error Container
+                </div>
+                <div className="flex w-full justify-end text-error-900">
+                  Error 90
+                </div>
+              </div>
+              <div className="flex h-full w-full flex-col justify-between bg-error-900 p-4">
+                <div className="flex w-full justify-start text-error-100">
+                  On Error Container
+                </div>
+                <div className="flex w-full justify-end text-error-100">
+                  Error 100
+                </div>
+              </div>
             </div>
             <div className="my-6 font-crimson text-2xl">Neutral Colors</div>
           </div>
@@ -171,11 +213,13 @@ export default function GraphicChartPage() {
                 <label className="">Issue : </label>
                 <IssueIcon />
               </div>
+              <div className="flex flex-row justify-between">
+                <label className="">Warning : </label>
+                <WarnIcon />
+              </div>
             </div>
           </div>
-          <div className="text-secondary-300">
-            More can be added on demand ...
-          </div>
+          <div>More can be added on demand</div>
           <div className="my-6 font-crimson text-2xl">Cards</div>
           <div className="grid grid-cols-3 gap-5">
             <DefaultCard />
@@ -185,6 +229,14 @@ export default function GraphicChartPage() {
           <div className="my-6 font-crimson text-2xl">Forms</div>
           <div className="grid grid-cols-3 gap-5">
             <Form title="Test Form" />
+          </div>
+          <div className="my-6 font-crimson text-2xl">Viewer</div>
+          <div className="grid grid-cols-3 gap-5">
+            <Viewer />
+          </div>
+          <div className="my-6 font-crimson text-2xl">Editor</div>
+          <div>
+            <Editor />
           </div>
         </div>
       </main>

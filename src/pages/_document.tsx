@@ -7,7 +7,6 @@ import Document, {
   NextScript,
   DocumentContext,
 } from "next/document"
-import Fonts from "@components/Fonts"
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -23,8 +22,9 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
             rel="stylesheet"
           />
+          <link rel="icon" href="/mushroom-icon.png" />
+          <Fonts />
         </Head>
-        <Fonts />
         <body>
           <Main />
           <NextScript />
@@ -32,6 +32,19 @@ class MyDocument extends Document {
       </Html>
     )
   }
+}
+
+const Fonts = () => {
+  return (
+    <>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Playfair:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet"
+      />
+    </>
+  )
 }
 
 export default MyDocument

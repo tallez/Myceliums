@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { MyceliumsAvatar, MyceliumsLogo } from "./icons"
 
 interface MenuItemProps {
   title: string
@@ -8,28 +9,12 @@ interface MenuItemProps {
 
 const exampleItems = [
   {
-    title: "Home",
-    active: false,
-  },
-  {
-    title: "Service",
-    active: false,
-  },
-  {
-    title: "Pricing",
-    active: false,
-  },
-  {
-    title: "Join",
+    title: "Presentation",
     active: true,
-  },
-  {
-    title: "Other",
-    active: false,
   },
 ]
 
-export function NavBar({
+export function ProjectFileNavBar({
   menuItems = exampleItems,
 }: {
   menuItems?: MenuItemProps[]
@@ -48,21 +33,15 @@ export function NavBar({
   }
 
   return (
-    <div className="flex flex-row justify-between rounded-full border border-black">
+    <div className="flex flex-row items-center space-x-2 rounded-full border bg-gray-50 px-1 py-1 text-sm shadow-inner">
       {menuItemsState.map((item, i) => {
         let currClass
-        if (item.active && i === 0) {
+        if (item.active) {
           currClass =
-            "cursor-pointer p-2 font-raleway font-bold text-primary-950 bg-primary-500 rounded-l-full pl-4 transition-full duration-300"
-        } else if (item.active && i === menuItems.length - 1) {
-          currClass =
-            "cursor-pointer p-2 font-raleway font-bold text-primary-950 bg-primary-500 rounded-r-full pr-4 transition-full duration-300"
-        } else if (item.active && i !== menuItems.length - 1) {
-          currClass =
-            "cursor-pointer p-2 font-bold text-primary-950 font-raleway bg-primary-500 transition-full px-4 duration-300"
+            "cursor-pointer px-2 py-1 flex items-center font-bold text-primary-950 font-raleway bg-primary-500 rounded-full transition-full duration-300"
         } else {
           currClass =
-            "cursor-pointer p-2 font-raleway transition-full duration-300"
+            "cursor-pointer px-2 font-raleway transition-full duration-300 flex items-center"
         }
         return (
           <p
@@ -74,6 +53,82 @@ export function NavBar({
           </p>
         )
       })}
+      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-500 text-white hover:bg-primary-400">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="h-6 w-6 cursor-pointer"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      </div>
+    </div>
+  )
+}
+
+export function ProjectActionNavbar() {
+  const menuItems = ["Presentation", "Issue", "Propositions"]
+  return (
+    <div className="my-2 flex flex-row items-center justify-between bg-gray-50 px-2">
+      <div className="flex flex-row space-x-8">
+        {menuItems.map((el) => {
+          return (
+            <p className="cursor-pointer font-playfair font-[200] hover:text-primary-500">
+              {el}
+            </p>
+          )
+        })}
+      </div>
+      <div className="m-1 flex cursor-pointer flex-row items-center space-x-2 rounded-lg text-secondary-300 hover:text-secondary-400">
+        <p className="font-playfair">Make Proposal</p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="h-6 w-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      </div>
+    </div>
+  )
+}
+
+export function PlaygroundNavBar() {
+  const menuItems = ["Home", "Playground"]
+  return (
+    <div className="shadow-lg">
+      <div className="flex flex-row items-center justify-between space-x-2 p-2 px-4">
+        <div className="flex flex-row space-x-2 p-2 ">
+          <MyceliumsLogo />
+          <div className="flex flex-row items-end justify-center space-x-4 p-2">
+            {menuItems.map((el) => {
+              return (
+                <p className="cursor-pointer font-raleway text-lg hover:text-primary-500">
+                  {el}
+                </p>
+              )
+            })}
+          </div>
+        </div>
+        <div>
+          <MyceliumsAvatar />
+        </div>
+      </div>
+      <div className="h-0.5 w-full bg-gradient-to-r from-primary-500 to-primary-800"></div>
     </div>
   )
 }

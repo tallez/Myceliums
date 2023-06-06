@@ -8,7 +8,7 @@ import {
   ValidateIcon,
   WarnIcon,
 } from "@components/icons"
-import { NavBar } from "@components/navbars"
+import { ProjectFileNavBar } from "@components/navbars"
 import Editor from "@components/presentation/editor"
 import Viewer from "@components/presentation/viewer"
 import Head from "next/head"
@@ -192,7 +192,7 @@ export default function GraphicChartPage() {
           </div>
           <div className="my-6 font-crimson text-2xl">NavBars</div>
           <div className="grid grid-cols-5 gap-2">
-            <NavBar />
+            <ProjectFileNavBar />
           </div>
           <div className="my-6 font-crimson text-2xl">Icons</div>
           <div className="w-1/2">

@@ -74,7 +74,7 @@ export function ProjectFileNavBar({
 }
 
 export function ProjectActionNavbar() {
-  const menuItems = ["Presentation", "Issue", "Propositions"]
+  const menuItems = ["Presentation", "Issues", "Propositions"]
   return (
     <div className="my-2 flex flex-row items-center justify-between bg-gray-50 px-2">
       <div className="flex flex-row space-x-8">

@@ -187,7 +187,7 @@ export default function GraphicChartPage() {
           <hr></hr>
           <div className="my-6 font-crimson text-2xl">Buttons</div>
           <div className="grid grid-cols-5 gap-2">
-            <DefaultActiveButton />
+            <DefaultActiveButton label="Active" />
             <DefaultDisabledButton />
           </div>
           <div className="my-6 font-crimson text-2xl">NavBars</div>
@@ -231,7 +231,7 @@ export default function GraphicChartPage() {
             <Form title="Test Form" />
           </div>
           <div className="my-6 font-crimson text-2xl">Viewer</div>
-          <div className="grid grid-cols-3 gap-5">
+          <div>
             <Viewer />
           </div>
           <div className="my-6 font-crimson text-2xl">Editor</div>

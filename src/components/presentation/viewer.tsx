@@ -58,7 +58,7 @@ export default function Viewer({
   project?: projectProps
 }) {
   return (
-    <div className="space-y-4 p-4">
+    <div className="space-y-4 rounded-lg border border-gray-200 p-4">
       {project.content.map((projectElement) => {
         return <ProjectElement projectElement={projectElement} />
       })}

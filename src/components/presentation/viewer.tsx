@@ -59,8 +59,8 @@ export default function Viewer({
 }) {
   return (
     <div className="space-y-4 rounded-lg border border-gray-200 p-4">
-      {project.content.map((projectElement) => {
-        return <ProjectElement projectElement={projectElement} />
+      {project.content.map((projectElement, i) => {
+        return <ProjectElement key={i} projectElement={projectElement} />
       })}
     </div>
   )

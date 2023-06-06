@@ -2,10 +2,16 @@ import { CommentIcon, LikeIcon, ShareIcon } from "@components/icons"
 import Layout from "@components/layout"
 import { ProjectActionNavbar, ProjectFileNavBar } from "@components/navbars"
 import Viewer from "@components/presentation/viewer"
+import Head from "next/head"
 
-export const ProjectPage = () => {
+export const ProjectPage = (props) => {
+  const { folders } = props
+  console.log(folders)
   return (
     <>
+      <Head>
+        <title>Project Title</title>
+      </Head>
       <Layout>
         <div className="my-4 p-2">
           <h2 className="font-raleway text-3xl">Project Title</h2>
@@ -25,7 +31,11 @@ export const ProjectPage = () => {
           </div>
         </div>
         <div className="my-2 grid grid-cols-3">
-          <ProjectFileNavBar />
+          <ProjectFileNavBar
+            menuItems={folders.map((folder, i) => {
+              return { title: folder.name, active: i === 0 ? true : false }
+            })}
+          />
         </div>
         <hr></hr>
         <ProjectActionNavbar />
@@ -40,3 +50,15 @@ export const ProjectPage = () => {
 }
 
 export default ProjectPage
+
+export async function getServerSideProps(ctx) {
+  const { folders } = await fetch(
+    "http://localhost:3000/api/filemanagement"
+  ).then((res) => res.json())
+
+  return {
+    props: {
+      folders: folders,
+    },
+  }
+}

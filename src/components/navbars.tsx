@@ -78,9 +78,12 @@ export function ProjectActionNavbar() {
   return (
     <div className="my-2 flex flex-row items-center justify-between bg-gray-50 px-2">
       <div className="flex flex-row space-x-8">
-        {menuItems.map((el) => {
+        {menuItems.map((el, i) => {
           return (
-            <p className="cursor-pointer font-playfair font-[200] hover:text-primary-500">
+            <p
+              key={i}
+              className="cursor-pointer font-playfair font-[200] hover:text-primary-500"
+            >
               {el}
             </p>
           )
@@ -115,9 +118,12 @@ export function PlaygroundNavBar() {
         <div className="flex flex-row space-x-2 p-2 ">
           <MyceliumsLogo />
           <div className="flex flex-row items-end justify-center space-x-4 p-2">
-            {menuItems.map((el) => {
+            {menuItems.map((el, i) => {
               return (
-                <p className="cursor-pointer font-raleway text-lg hover:text-primary-500">
+                <p
+                  key={i}
+                  className="cursor-pointer font-raleway text-lg hover:text-primary-500"
+                >
                   {el}
                 </p>
               )

@@ -2,26 +2,40 @@ import Image from "next/image"
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import { signIn } from "next-auth/react"
 
-export default function Login() {
+export default function Login({ error }: { error: boolean }) {
   const [isLoading, setIsLoading] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitType, setSubmitType] = useState("")
 
   useEffect(() => {
     const connectUser = async () => {
       if (isSubmitting) {
         setIsLoading(true)
-        await signIn("credentials", { email, password })
+        await signIn(submitType, { email, password })
         setIsLoading(false)
       }
     }
     connectUser()
   }, [isSubmitting])
 
-  const SignInWithGoogle = () => {
+  const SignInWithGoogle = ({
+    setIsSubmitting,
+    setSubmitType,
+  }: {
+    setSubmitType: Dispatch<SetStateAction<string>>
+    setIsSubmitting: Dispatch<SetStateAction<boolean>>
+  }) => {
+    const handleClick = () => {
+      setSubmitType("google")
+      setIsSubmitting(true)
+    }
     return (
-      <button className="col-span-2 my-4 flex w-full flex-row items-center justify-center space-x-2 rounded border p-2 hover:bg-gray-100">
+      <button
+        onClick={() => handleClick()}
+        className="col-span-2 my-4 flex w-full flex-row items-center justify-center space-x-2 rounded border p-2 hover:bg-gray-100"
+      >
         <Image src="/google.png" width={20} height={20} alt={""} />
         <p>Sign in with Google</p>
       </button>
@@ -31,10 +45,13 @@ export default function Login() {
   const SignInWithCredentials = ({
     setEmail,
     setPassword,
+    setIsSubmitting,
+    setSubmitType,
   }: {
     setEmail: Dispatch<SetStateAction<string>>
     setPassword: Dispatch<SetStateAction<string>>
     setIsSubmitting: Dispatch<SetStateAction<boolean>>
+    setSubmitType: Dispatch<SetStateAction<string>>
   }) => {
     const [localEmail, setLocalEmail] = useState("")
     const [localPassword, setLocalPassword] = useState("")
@@ -47,15 +64,15 @@ export default function Login() {
       setLocalPassword(password)
     }
 
-    const handleSubmit = (e) => {
-      e.preventDefault()
+    const handleSubmit = () => {
+      setSubmitType("credentials")
       setEmail(localEmail)
       setPassword(localPassword)
       setIsSubmitting(true)
     }
 
     return (
-      <form className="mt-10 w-full space-y-4">
+      <form className="mt-2 w-full space-y-4">
         <label className="col-span-1 flex w-full items-center font-bold">
           Email
         </label>
@@ -82,6 +99,7 @@ export default function Login() {
         />
 
         <button
+          type="submit"
           onClick={handleSubmit}
           className="col-span-2 my-10 w-full rounded bg-primary-500 p-2 text-white hover:bg-primary-300"
         >
@@ -97,30 +115,53 @@ export default function Login() {
   }
 
   return (
-    <div className="relative my-12 w-96 rounded-xl border bg-white px-4 py-8 shadow-lg">
-      <div className="flex flex-row items-end">
-        <h1 className="pb-2 font-raleway text-2xl ">Myceliums</h1>
-        <Image src="/myceliums-logo.svg" width={60} height={60} alt={"Logo"} />
+    <>
+      <div
+        className={`relative my-12 w-96 rounded-xl border bg-white ${
+          error ? "border-error-500" : "border-gray-300"
+        } px-4 py-8 shadow-lg`}
+      >
+        <div className="flex flex-row items-end">
+          <h1 className="pb-2 font-raleway text-2xl ">Myceliums</h1>
+          <Image
+            src="/myceliums-logo.svg"
+            width={60}
+            height={60}
+            alt={"Logo"}
+          />
+        </div>
+        <h1 className="text-kanit-200 my-4 text-4xl font-extrabold"></h1>
+        <h2 className="text-xl">Please sign in to continue</h2>
+
+        {error ? (
+          <div className="my-4 flex w-full items-center justify-center rounded-lg bg-error-500 p-2 font-bold text-white">
+            Wrong Credentials
+          </div>
+        ) : null}
+
+        <SignInWithCredentials
+          setEmail={setEmail}
+          setPassword={setPassword}
+          setIsSubmitting={setIsSubmitting}
+          setSubmitType={setSubmitType}
+        ></SignInWithCredentials>
+
+        <div className="my-4 flex items-center justify-center">
+          <hr className="mx-2 w-1/3" />
+          <p className="mx-2">Or</p>
+          <hr className="mx-2 w-1/3" />
+        </div>
+        <SignInWithGoogle
+          setIsSubmitting={setIsSubmitting}
+          setSubmitType={setSubmitType}
+        />
+        <div className="flex flex-row space-x-2 text-sm">
+          <p>Don't have an account yet ?</p>
+          <p className="cursor-pointer font-extrabold hover:text-gray-500">
+            Sign up
+          </p>
+        </div>
       </div>
-      <h1 className="text-kanit-200 my-4 text-4xl font-extrabold"></h1>
-      <h2 className="text-xl">Please sign in to continue</h2>
-      <SignInWithCredentials
-        setEmail={setEmail}
-        setPassword={setPassword}
-        setIsSubmitting={setIsSubmitting}
-      ></SignInWithCredentials>
-      <div className="my-4 flex items-center justify-center">
-        <hr className="mx-2 w-1/3" />
-        <p className="mx-2">Or</p>
-        <hr className="mx-2 w-1/3" />
-      </div>
-      <SignInWithGoogle />
-      <div className="flex flex-row space-x-2 text-sm">
-        <p>Don't have an account yet ?</p>
-        <p className="cursor-pointer font-extrabold hover:text-gray-500">
-          Sign up
-        </p>
-      </div>
-    </div>
+    </>
   )
 }

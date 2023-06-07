@@ -27,6 +27,12 @@ export default NextAuth({
           where: {
             email: email,
           },
+          select: {
+            id: true,
+            password: true,
+            email: true,
+            name: true,
+          },
         })
         if (user && user.password === password) {
           return user
@@ -53,7 +59,19 @@ export default NextAuth({
     strategy: "jwt",
   },
   callbacks: {
-    async signIn(user, account, profile) {
+    async jwt({ token, user }) {
+      // If a user is logged in, include the user's ID in the token
+      if (user) {
+        token.id = user.id // Include the 'id' field in the token
+      }
+      return token
+    },
+    async session({ session, token }) {
+      // Include the user's ID in the session data
+      session.user.id = token.id
+      return session
+    },
+    async signIn(user) {
       if (user) {
         return Promise.resolve(true)
       }

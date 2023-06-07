@@ -1,7 +1,11 @@
+import Layout from "@components/layout"
+import { SessionProvider, useSession } from "next-auth/react"
+
 export const Playground = () => {
+  const session = useSession()
   return (
     <>
-      <h1>Welcome to the playground</h1>
+      <Layout>Welcome to the Playground</Layout>
     </>
   )
 }

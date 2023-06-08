@@ -1,7 +1,14 @@
+import Head from "next/head"
+
+import Layout from "@components/layout"
+
 export const Playground = () => {
   return (
     <>
-      <h1>Welcome to the playground</h1>
+      <Head>
+        <title>Playground</title>
+      </Head>
+      <Layout>Welcome to the Playground</Layout>
     </>
   )
 }

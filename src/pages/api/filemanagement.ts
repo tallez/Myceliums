@@ -1,9 +1,10 @@
 import fs from "fs"
+
 import { NextApiRequest, NextApiResponse } from "next"
 
 const makeFile = async (filePath: string) => {
   try {
-    await fs.promises.writeFile(filePath, '')
+    await fs.promises.writeFile(filePath, "")
     return true
   } catch (error) {
     console.error(error)
@@ -57,7 +58,7 @@ export default async function handler(
         fs.mkdir(
           `/Users/thomas/Desktop/MyceliumsResearch/Projects/test-project/${folderName}`,
           (err) => {
-            console.log(err)
+            res.status(400).json({ success: false })
           }
         )
         res.status(200).json({ success: true })
@@ -110,4 +111,3 @@ export default async function handler(
       break
   }
 }
-

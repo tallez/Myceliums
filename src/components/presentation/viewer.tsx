@@ -1,5 +1,6 @@
-import { WarnIcon } from "@components/icons"
 import Image from "next/image"
+
+import { WarnIcon } from "@components/icons"
 
 interface projectProps {
   title: string

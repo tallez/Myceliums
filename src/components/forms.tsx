@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
+
 import Image from "next/image"
 
 export enum FormFieldType {
@@ -99,9 +100,9 @@ export default function Form({
       })
       const { success } = await result.json()
       if (success) {
-        console.log("sucess")
+        return
       } else {
-        console.log("something went wrong")
+        return
       }
     } catch (error) {
       console.error(error)

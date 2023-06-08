@@ -1,4 +1,7 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
+
+import { signOut, useSession } from "next-auth/react"
+
 import { MyceliumsAvatar, MyceliumsLogo } from "./icons"
 
 interface MenuItemProps {
@@ -112,6 +115,8 @@ export function ProjectActionNavbar() {
 
 export function PlaygroundNavBar() {
   const menuItems = ["Home", "Playground"]
+  const [isActive, setIsActive] = useState(false)
+  const { status } = useSession()
   return (
     <div className="shadow-lg">
       <div className="flex flex-row items-center justify-between space-x-2 p-2 px-4">
@@ -130,11 +135,43 @@ export function PlaygroundNavBar() {
             })}
           </div>
         </div>
-        <div>
-          <MyceliumsAvatar />
-        </div>
+        {status === "authenticated" && (
+          <div
+            onClick={() => setIsActive(!isActive)}
+            className="relative flex flex-row items-center"
+          >
+            <MyceliumsAvatar />
+            {isActive ? <ProfileMenu /> : null}
+          </div>
+        )}
       </div>
       <div className="h-0.5 w-full bg-gradient-to-r from-primary-500 to-primary-800"></div>
+    </div>
+  )
+}
+
+const ProfileMenu = () => {
+  const session = useSession()
+  const disconnectUser = async () => {
+    await signOut()
+  }
+
+  return (
+    <div className="absolute top-0 right-0">
+      <div className="h-12 w-12"></div>
+      <div className="flex flex-col whitespace-nowrap rounded border bg-white p-2 font-raleway text-sm">
+        <p className="cursor-pointer">
+          Signed in as <strong>{session.data.user.name}</strong>
+        </p>
+        <hr className="my-2"></hr>
+        <div>
+          <p className="my-2 cursor-pointer">Your projects</p>
+        </div>
+        <hr className="my-2"></hr>
+        <p onClick={() => disconnectUser()} className="cursor-pointer">
+          Sign out
+        </p>
+      </div>
     </div>
   )
 }

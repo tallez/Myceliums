@@ -31,45 +31,46 @@ export default async function handler(
           }
           await git.checkoutLocalBranch(newBranch)
           await git.fetch()
-          res
-            .status(200)
-            .json({
-              success: true,
-              message: `Created branch '${newBranch}' based on '${origin}'.`,
-            })
+          res.status(200).json({
+            success: true,
+            message: `Created branch '${newBranch}' based on '${origin}'.`,
+          })
         } catch (error) {
-          res
-            .status(200)
-            .json({
-              success: false,
-              message: `Failed to create branch '${newBranch}':`,
-              error,
-            })
+          res.status(200).json({
+            success: false,
+            message: `Failed to create branch '${newBranch}':`,
+            error,
+          })
         }
       } else if (action === "delete") {
-        const branchToDelete = name;
+        const branchToDelete = name
 
-        await git.cwd(folder);
+        await git.cwd(folder)
 
         try {
-          await git.checkout(branchToDelete);
-          await git.add(".");
-          await git.commit("Commit before delete");
+          await git.checkout(branchToDelete)
+          await git.add(".")
+          await git.commit("Commit before delete")
         } catch (e) {
-          res.status(400).json({ success: false, message: "No branch to delete." });
-          return;
+          res
+            .status(400)
+            .json({ success: false, message: "No branch to delete." })
+          return
         }
 
         try {
-          await git.checkout(origin);
-          await git.deleteLocalBranch(branchToDelete);
-          res
-            .status(200)
-            .json({ success: true, message: `Deleted branch '${branchToDelete}'.` });
+          await git.checkout(origin)
+          await git.deleteLocalBranch(branchToDelete)
+          res.status(200).json({
+            success: true,
+            message: `Deleted branch '${branchToDelete}'.`,
+          })
         } catch (error) {
-          res
-            .status(500)
-            .json({ success: false, message: `Failed to delete branch '${branchToDelete}':`, error });
+          res.status(500).json({
+            success: false,
+            message: `Failed to delete branch '${branchToDelete}':`,
+            error,
+          })
         }
       } else if (action === "merge") {
         const { sourceBranch, targetBranch } = req.body
@@ -77,12 +78,10 @@ export default async function handler(
         try {
           await git.checkout(targetBranch)
           await git.mergeFromTo(sourceBranch, targetBranch)
-          res
-            .status(200)
-            .json({
-              success: true,
-              message: `Merged branch '${sourceBranch}' into '${targetBranch}'.`,
-            })
+          res.status(200).json({
+            success: true,
+            message: `Merged branch '${sourceBranch}' into '${targetBranch}'.`,
+          })
         } catch (error) {
           res.status(200).json({
             success: false,
@@ -96,7 +95,9 @@ export default async function handler(
         try {
           const summary = await git.diffSummary([baseBranch, compareBranch])
           const changes = await git.diff([baseBranch, compareBranch])
-          res.status(200).json({ success: true, summary: summary, changes: changes })
+          res
+            .status(200)
+            .json({ success: true, summary: summary, changes: changes })
         } catch (error) {
           res.status(200).json({
             success: false,
@@ -114,12 +115,13 @@ export default async function handler(
 
         try {
           await git.checkout(checkoutBranch)
-          const situation = await git.branchLocal();
+          const situation = await git.branchLocal()
           res.status(200).json({ success: true, situation: situation })
-        }
-        catch (e) {
-          const situation = await git.branchLocal();
-          res.status(400).json({ success: false, situation: situation, error: e })
+        } catch (e) {
+          const situation = await git.branchLocal()
+          res
+            .status(400)
+            .json({ success: false, situation: situation, error: e })
         }
       } else if (action === "commit") {
         const { name } = req.body

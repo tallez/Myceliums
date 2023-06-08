@@ -1,8 +1,9 @@
+import Head from "next/head"
+
 import { CommentIcon, LikeIcon, ShareIcon } from "@components/icons"
 import Layout from "@components/layout"
 import { ProjectActionNavbar, ProjectFileNavBar } from "@components/navbars"
 import Viewer from "@components/presentation/viewer"
-import Head from "next/head"
 
 export const ProjectPage = (props) => {
   return (

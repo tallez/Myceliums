@@ -1,6 +1,8 @@
-import Image from "next/image"
 import { useEffect, useState } from "react"
+
 import { signIn } from "next-auth/react"
+import Image from "next/image"
+
 import { LoadingIcon } from "./icons"
 
 export default function Login({ error }) {
@@ -10,15 +12,14 @@ export default function Login({ error }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitType, setSubmitType] = useState("")
 
-  const connectUser = async () => {
-    if (isSubmitting) {
-      setIsLoading(true)
-      await signIn(submitType, { email, password })
-      setIsLoading(false)
-    }
-  }
-
   useEffect(() => {
+    const connectUser = async () => {
+      if (isSubmitting) {
+        setIsLoading(true)
+        await signIn(submitType, { email, password })
+        setIsLoading(false)
+      }
+    }
     connectUser()
   }, [isSubmitting])
 

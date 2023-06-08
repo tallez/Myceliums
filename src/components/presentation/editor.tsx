@@ -1,16 +1,18 @@
 import { Dispatch, SetStateAction, useState } from "react"
+
+import { DefaultActiveButton } from "@components/buttons"
+
+import {
+  projectElementProps,
+  projectElementTypes,
+  projectProps,
+} from "../../interface/global"
 import {
   HeadingEditor,
   ParagraphEditor,
   SubHeadingEditor,
   availableElements,
 } from "./editor-elements"
-import {
-  projectElementProps,
-  projectElementTypes,
-  projectProps,
-} from "../../interface/global"
-import { DefaultActiveButton } from "@components/buttons"
 
 const emptyProject = {
   title: "",
@@ -36,6 +38,7 @@ export default function Editor({
       {project.content.map((projectElement, i) => {
         return (
           <ProjectElement
+            key={i}
             setProject={setProject}
             project={project}
             projectElement={projectElement}
@@ -87,7 +90,7 @@ const ProjectElement = ({
 
 const SaveButton = ({ project }: { project: projectProps }) => {
   return (
-    <div onClick={() => console.log(project)}>
+    <div>
       <DefaultActiveButton label="Save" />
     </div>
   )

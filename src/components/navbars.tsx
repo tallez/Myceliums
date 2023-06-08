@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react"
-import { MyceliumsAvatar, MyceliumsLogo } from "./icons"
+import { useState } from "react"
+
 import { signOut, useSession } from "next-auth/react"
+
+import { MyceliumsAvatar, MyceliumsLogo } from "./icons"
 
 interface MenuItemProps {
   title: string

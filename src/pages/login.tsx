@@ -1,6 +1,7 @@
-import Login from "@components/login-frame"
 import Head from "next/head"
 import Image from "next/image"
+
+import Login from "@components/login-frame"
 
 export default function LoginPage(props) {
   const { error } = props

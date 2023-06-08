@@ -1,9 +1,8 @@
-import Layout from "@components/layout"
-import { SessionProvider, useSession } from "next-auth/react"
 import Head from "next/head"
 
+import Layout from "@components/layout"
+
 export const Playground = () => {
-  const session = useSession()
   return (
     <>
       <Head>

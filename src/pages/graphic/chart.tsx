@@ -1,3 +1,5 @@
+import Head from "next/head"
+
 import { DefaultActiveButton, DefaultDisabledButton } from "@components/buttons"
 import { DefaultCard, SecondaryCard, TertiaryCard } from "@components/cards"
 import Form from "@components/forms"
@@ -11,7 +13,6 @@ import {
 import { ProjectFileNavBar } from "@components/navbars"
 import Editor from "@components/presentation/editor"
 import Viewer from "@components/presentation/viewer"
-import Head from "next/head"
 
 export default function GraphicChartPage() {
   return (

@@ -8,7 +8,7 @@ export const LoadingIcon = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="h-6 w-6 animate-spin"
+      className="h-6 w-6 animate-spin text-white"
     >
       <path
         strokeLinecap="round"
@@ -186,7 +186,7 @@ export const MyceliumsLogo = () => {
 
 export const MyceliumsAvatar = () => {
   return (
-    <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-primary-500 shadow-inner">
+    <div className="relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary-500 shadow-inner hover:bg-primary-400">
       <Image
         src="/myceliums-avatar.png"
         alt="Logo"

@@ -3,8 +3,9 @@ import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google"
 
-import prisma from "../../../../lib/prisma"
 import { comparePasswords } from "@utils/passwords-encrypt"
+
+import prisma from "../../../../lib/prisma"
 
 export default NextAuth({
   providers: [

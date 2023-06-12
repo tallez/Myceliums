@@ -1,10 +1,11 @@
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
+
 import Head from "next/head"
 import Image from "next/image"
-
-import Login from "@components/login-frame"
-import { Dispatch, SetStateAction, useEffect, useState } from "react"
-import { WarnIcon } from "@components/icons"
 import { useRouter } from "next/router"
+
+import { WarnIcon } from "@components/icons"
+import Login from "@components/login-frame"
 import { confirmEmail } from "@utils/mail-templates"
 
 export default function LoginPage(props) {
@@ -93,7 +94,7 @@ const SignUp = ({
             }),
           })
         } catch (e) {
-          console.log("error sending confirmation mail", e)
+          console.error("Error sending confirmation mail", e)
         }
         router.push(`/login/${createUser.id}`)
       } else setError("There was an error proceeding your inscription")
@@ -115,8 +116,8 @@ const SignUp = ({
 
         const data = await response.json()
         return data
-      } catch (error) {
-        console.log(error)
+      } catch (e) {
+        console.error("Error sending confirmation mail", e)
       }
     }
 
@@ -136,8 +137,8 @@ const SignUp = ({
           }
         }
       })
-      .catch((error) => {
-        console.log(error)
+      .catch((e) => {
+        console.error("Error sending confirmation mail", e)
       })
   }, [formData])
 

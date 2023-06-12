@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 import Image from "next/image"
 
 export const LoadingIcon = () => {
@@ -75,8 +77,6 @@ export const IssueIcon = () => {
     </svg>
   )
 }
-
-import { useState } from "react"
 
 export const WarnIcon = ({ toolTip }: { toolTip: string }) => {
   const [showTooltip, setShowTooltip] = useState(false)

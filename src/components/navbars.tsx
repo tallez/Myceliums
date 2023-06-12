@@ -1,9 +1,9 @@
 import { useState } from "react"
 
 import { signOut, useSession } from "next-auth/react"
+import Link from "next/link"
 
 import { MyceliumsAvatar, MyceliumsLogo } from "./icons"
-import Link from "next/link"
 
 interface MenuItemProps {
   title: string
@@ -129,7 +129,7 @@ export function PlaygroundNavBar() {
           <div className="flex flex-row items-end justify-center space-x-4 p-2">
             {menuItems.map((el, i) => {
               return (
-                <Link key={i} href={el.link}>
+                <Link passHref key={i} href={el.link}>
                   <p className="cursor-pointer font-raleway text-lg hover:text-primary-500">
                     {el.title}
                   </p>
@@ -169,7 +169,7 @@ const ProfileMenu = () => {
         <hr className="my-2"></hr>
         <div>
           {/* @ts-ignore no idea where to update the session type */}
-          <Link href={`/playground/${session.data.user.id}`}>
+          <Link passHref href={`/playground/${session.data.user.id}`}>
             <p className="my-2 cursor-pointer">Your projects</p>
           </Link>
         </div>

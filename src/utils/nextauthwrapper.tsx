@@ -22,7 +22,7 @@ export const withAuth = (WrappedComponent: React.FC<ProtectedPageProps>) => {
         }
       }
       checkUser()
-    }, [])
+    })
     return <WrappedComponent {...props} />
   }
   return Wrapper

@@ -1,7 +1,9 @@
-import prisma from "lib/prisma"
 import React, { useEffect, useState } from "react"
+
 import Image from "next/image"
 import Link from "next/link"
+
+import prisma from "lib/prisma"
 
 export default function ConfirmPage(props) {
   const { confirmed, confirmId } = props
@@ -23,12 +25,12 @@ export default function ConfirmPage(props) {
     return () => {
       clearInterval(interval)
     }
-  }, [])
+  }, [confirmId])
 
   if (isConfirmed) {
     return (
       <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-br from-primary-600 to-primary-700 text-gray-700">
-        <Link href={"/login"}>
+        <Link passHref href={"/login"}>
           <p className="">Great ! Please login into your account</p>
         </Link>
       </div>

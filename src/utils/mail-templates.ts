@@ -1,6 +1,5 @@
 export const confirmEmail = (link) => {
-    return (
-        `
+  return `
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
 <head>
@@ -161,5 +160,5 @@ div.t3,div.t4{mso-line-height-alt:60px !important;line-height:60px !important;di
 </tr></table>
 </td></tr><tr><td><div class=t4 style="mso-line-height-rule:exactly;font-size:1px;display:none;">&nbsp;</div></td></tr></table></td></tr></table></div></body>
 </html>
-`)
+`
 }

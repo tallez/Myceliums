@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next"
 
-
-import prisma from "lib/prisma"
 import { hashPassword } from "@utils/passwords-encrypt"
+import prisma from "lib/prisma"
 
 export default async function handler(
   req: NextApiRequest,
@@ -14,30 +13,33 @@ export default async function handler(
       try {
         let existingUser = await prisma.user.findUnique({
           where: {
-            email: email
-          }
+            email: email,
+          },
         })
         if (existingUser) {
           res.status(200).json({ message: "User email found", result: "email" })
         } else {
           existingUser = await prisma.user.findUnique({
             where: {
-              name: username
-            }
+              name: username,
+            },
           })
           if (existingUser) {
-            res.status(200).json({ message: "User name found", result: "username" })
+            res
+              .status(200)
+              .json({ message: "User name found", result: "username" })
           } else {
             res.status(200).json({ message: "No user", result: "clear" })
           }
         }
       } catch (e) {
-        res.status(200).json({ message: "Credentials incomplete", result: "clear" })
+        res
+          .status(200)
+          .json({ message: "Credentials incomplete", result: "clear" })
       }
-      break;
+      break
     case "PUT":
       var { username, email, password } = req.body
-
 
       try {
         const newUser = await prisma.user.create({
@@ -53,5 +55,3 @@ export default async function handler(
       }
   }
 }
-
-

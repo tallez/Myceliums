@@ -30,9 +30,22 @@ export default function ConfirmPage(props) {
   if (isConfirmed) {
     return (
       <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-br from-primary-600 to-primary-700 text-gray-700">
-        <Link passHref href={"/login"}>
-          <p className="">Great ! Please login into your account</p>
-        </Link>
+        <div className="flex flex-col items-center justify-center text-center">
+          <h1 className="mb-4 font-raleway text-3xl font-bold">
+            Great ! Now you are a Mushroom ...
+          </h1>
+          <Link passHref href={"/login"}>
+            <p className="cursor-pointer text-xl hover:underline">
+              Please login into your account ! 👈
+            </p>
+          </Link>
+          <Image
+            src="/myceliums-valid.png"
+            width={200}
+            height={200}
+            alt={"Logo"}
+          />
+        </div>
       </div>
     )
   } else {

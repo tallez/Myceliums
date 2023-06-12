@@ -19,7 +19,7 @@ export async function sendEmail(
 ) {
   // send mail with defined transport object
   await transporter.sendMail({
-    from: "Myceliums", // sender address
+    from: "Thomas de Myceliums <association.myceliums@gmail.com>", // sender address
     to, // list of receivers
     subject, // Subject line
     text,

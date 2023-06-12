@@ -5,7 +5,6 @@ import Login from "@components/login-frame"
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import { WarnIcon } from "@components/icons"
 import { useRouter } from "next/router"
-import { sendEmail } from "@utils/send-mail"
 import { confirmEmail } from "@utils/mail-templates"
 
 export default function LoginPage(props) {
@@ -243,4 +242,19 @@ const SignUp = ({
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps(req) {
+  const { error } = req.query
+  if (error) {
+    return {
+      props: {
+        error,
+      },
+    }
+  } else {
+    return {
+      props: {},
+    }
+  }
 }

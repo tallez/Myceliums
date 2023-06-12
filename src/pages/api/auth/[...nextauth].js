@@ -4,6 +4,7 @@ import Credentials from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google"
 
 import prisma from "../../../../lib/prisma"
+import { comparePasswords } from "@utils/passwords-encrypt"
 
 export default NextAuth({
   providers: [
@@ -35,7 +36,7 @@ export default NextAuth({
             emailConfirmed: true,
           },
         })
-        if (user && user.password === password) {
+        if (user && (await comparePasswords(password, user.password))) {
           if (user.emailConfirmed) {
             return user
           } else {

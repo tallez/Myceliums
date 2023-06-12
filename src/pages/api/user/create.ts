@@ -1,6 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next"
 
+
 import prisma from "lib/prisma"
+import { hashPassword } from "@utils/passwords-encrypt"
 
 export default async function handler(
   req: NextApiRequest,
@@ -35,12 +37,14 @@ export default async function handler(
       break;
     case "PUT":
       var { username, email, password } = req.body
+
+
       try {
         const newUser = await prisma.user.create({
           data: {
             name: username,
             email: email,
-            password: password,
+            password: await hashPassword(password),
           },
         })
         res.status(200).json({ success: true, id: newUser.id })
@@ -49,3 +53,5 @@ export default async function handler(
       }
   }
 }
+
+

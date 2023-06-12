@@ -100,6 +100,11 @@ export default function Login({
             Invalid email or password. Please try again.
           </p>
         )}
+        {error && (
+          <div className="my-4 flex w-full items-center justify-center rounded-lg bg-error-400 p-2 font-bold text-white shadow-lg">
+            {error}
+          </div>
+        )}
 
         <button
           type="submit"
@@ -137,12 +142,6 @@ export default function Login({
         </div>
         <h1 className="text-kanit-200 my-4 text-4xl font-extrabold"></h1>
         <h2 className="text-xl">Please sign in to continue</h2>
-
-        {error && (
-          <div className="my-4 flex w-full items-center justify-center rounded-lg bg-error-500 p-2 font-bold text-white">
-            Wrong Credentials
-          </div>
-        )}
 
         <SignInWithCredentials />
 

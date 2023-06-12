@@ -32,10 +32,15 @@ export default NextAuth({
             password: true,
             email: true,
             name: true,
+            emailConfirmed: true,
           },
         })
         if (user && user.password === password) {
-          return user
+          if (user.emailConfirmed) {
+            return user
+          } else {
+            throw new Error("Email not confirmed")
+          }
         } else {
           throw new Error("Invalid Credentials")
         }

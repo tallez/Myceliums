@@ -1,11 +1,17 @@
-import { useEffect, useState } from "react"
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
 
 import { signIn } from "next-auth/react"
 import Image from "next/image"
 
 import { LoadingIcon } from "./icons"
 
-export default function Login({ error }) {
+export default function Login({
+  error,
+  setSignUpActive,
+}: {
+  error: boolean
+  setSignUpActive: Dispatch<SetStateAction<boolean>>
+}) {
   const [isLoading, setIsLoading] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -148,7 +154,10 @@ export default function Login({ error }) {
         <SignInWithGoogle />
         <div className="flex flex-row space-x-2 text-sm">
           <p>Don't have an account yet ?</p>
-          <p className="cursor-pointer font-extrabold hover:text-gray-500">
+          <p
+            onClick={() => setSignUpActive(true)}
+            className="cursor-pointer font-extrabold hover:text-gray-500"
+          >
             Sign up
           </p>
         </div>

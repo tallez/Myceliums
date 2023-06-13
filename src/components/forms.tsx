@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
 
-import Image from "next/image"
+import Image from "next/legacy/image"
 
 export enum FormFieldType {
   Text = "text",

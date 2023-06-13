@@ -1,5 +1,5 @@
 import Head from "next/head"
-import Image from "next/image"
+import Image from "next/legacy/image"
 
 import Login from "@components/login-frame"
 
@@ -11,15 +11,15 @@ export default function LoginPage(props) {
       <Head>
         <title>Login</title>
       </Head>
-      <div className="relative grid h-screen w-screen grid-cols-2 overflow-hidden">
-        <div className="flex h-full w-full items-center justify-center">
+      <div className="relative grid w-screen h-screen grid-cols-2 overflow-hidden">
+        <div className="flex items-center justify-center w-full h-full">
           <Login error={error} />
         </div>
-        <div className="flex h-full w-full items-center justify-center bg-primary-500">
+        <div className="relative flex items-center justify-center w-full h-full bg-primary-500">
           <Image
-            src="/myceliums-avatar.png"
-            width={600}
-            height={600}
+            src="/myceliums-texture2.png"
+            layout="fill"
+            objectFit="cover"
             alt={"Logo"}
           />
         </div>

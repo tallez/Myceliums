@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 import { signOut, useSession } from "next-auth/react"
+import Link from "next/link"
 
 import { MyceliumsAvatar, MyceliumsLogo } from "./icons"
 
@@ -79,7 +80,7 @@ export function ProjectFileNavBar({
 export function ProjectActionNavbar() {
   const menuItems = ["Presentation", "Issues", "Propositions"]
   return (
-    <div className="my-2 flex flex-row items-center justify-between bg-gray-50 px-2">
+    <div className="my-2 flex flex-row items-center justify-between bg-gray-50 px-2 opacity-80">
       <div className="flex flex-row space-x-8">
         {menuItems.map((el, i) => {
           return (
@@ -114,7 +115,10 @@ export function ProjectActionNavbar() {
 }
 
 export function PlaygroundNavBar() {
-  const menuItems = ["Home", "Playground"]
+  const menuItems = [
+    { title: "Home", link: "/" },
+    { title: "Playground", link: "/playground" },
+  ]
   const [isActive, setIsActive] = useState(false)
   const { status } = useSession()
   return (
@@ -125,12 +129,11 @@ export function PlaygroundNavBar() {
           <div className="flex flex-row items-end justify-center space-x-4 p-2">
             {menuItems.map((el, i) => {
               return (
-                <p
-                  key={i}
-                  className="cursor-pointer font-raleway text-lg hover:text-primary-500"
-                >
-                  {el}
-                </p>
+                <Link passHref key={i} href={el.link}>
+                  <p className="cursor-pointer font-raleway text-lg hover:text-primary-500">
+                    {el.title}
+                  </p>
+                </Link>
               )
             })}
           </div>
@@ -165,7 +168,10 @@ const ProfileMenu = () => {
         </p>
         <hr className="my-2"></hr>
         <div>
-          <p className="my-2 cursor-pointer">Your projects</p>
+          {/* @ts-ignore no idea where to update the session type */}
+          <Link passHref href={`/playground/${session.data.user.id}`}>
+            <p className="my-2 cursor-pointer">Your projects</p>
+          </Link>
         </div>
         <hr className="my-2"></hr>
         <p onClick={() => disconnectUser()} className="cursor-pointer">

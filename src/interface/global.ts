@@ -1,7 +1,8 @@
 export interface projectProps {
   title: string
   description?: string
-  content: projectElementProps[]
+  elements: projectElementProps[],
+  author: string
 }
 
 export interface projectElementProps {
@@ -16,5 +17,5 @@ export enum projectElementTypes {
   subheading = "subheading",
   paragraph = "paragraph",
   image = "image",
-  tip = "tips",
+  tip = "tip",
 }

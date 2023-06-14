@@ -16,37 +16,37 @@ import {
 
 const emptyProject = {
   title: "",
-  content: [],
+  elements: [],
+  author: "",
 }
 
 export default function Editor({
-  initProject = emptyProject,
+  project = emptyProject,
 }: {
-  initProject?: projectProps
+  project?: projectProps
 }) {
-  const [project, setProject] = useState<projectProps>(initProject)
+  const [currProject, setCurrProject] = useState<projectProps>(project)
 
   return (
     <div className="flex flex-col rounded-xl border border-gray-200 p-4">
       <div className="flex flex-col px-4 font-playfair italic">
-        <p>Title</p>
-        <p>Description</p>
+        <p>{currProject.title}</p>
         <p>Tag(s)</p>
-        <p>Author(s)</p>
+        <p>{currProject.author}</p>
       </div>
       <hr className="my-4"></hr>
-      {project.content.map((projectElement, i) => {
+      {currProject.elements.map((projectElement, i) => {
         return (
           <ProjectElement
             key={i}
-            setProject={setProject}
-            project={project}
+            setProject={setCurrProject}
+            project={currProject}
             projectElement={projectElement}
             index={i}
           />
         )
       })}
-      <AddElement setProject={setProject} project={project} />
+      <AddElement setProject={setCurrProject} project={currProject} />
       <div className="flex w-full justify-end">
         <SaveButton project={project} />
       </div>
@@ -109,8 +109,8 @@ const AddElement = ({
       type: type,
       content: "",
     }
-    const newContent = [...project.content, newElement]
-    setProject({ ...project, content: newContent })
+    const newContent = [...project.elements, newElement]
+    setProject({ ...project, elements: newContent })
     setIsActive(false)
   }
   return (

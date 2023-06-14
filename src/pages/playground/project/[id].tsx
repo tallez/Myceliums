@@ -4,25 +4,29 @@ import { CommentIcon, LikeIcon, ShareIcon } from "@components/icons"
 import Layout from "@components/layout"
 import { ProjectActionNavbar, ProjectFileNavBar } from "@components/navbars"
 import Viewer from "@components/presentation/viewer"
+import Editor from "@components/presentation/editor"
 
 export const ProjectPage = (props) => {
+  const { metaData, projectData } = props
   return (
     <>
       <Head>
-        <title>Test Project</title>
+        <title>{projectData.title}</title>
       </Head>
       <Layout>
         <div className="my-4 p-2">
-          <h2 className="font-raleway text-3xl">Test Project</h2>
-          <p className="font-playfair text-primary-400">By Author</p>
+          <h2 className="font-raleway text-3xl">{projectData.title}</h2>
+          <p className="font-playfair text-primary-400">By {metaData.author}</p>
           <div className="my-2 flex flex-row items-center space-x-4 text-gray-600">
             <div className="flex cursor-pointer flex-row items-center hover:text-secondary-400">
               <LikeIcon />
-              <p className="pl-2 font-playfair">1201</p>
+              <p className="pl-2 font-playfair">{projectData.likes.length}</p>
             </div>
             <div className="flex cursor-pointer flex-row items-center hover:text-secondary-400">
               <CommentIcon />
-              <p className="pl-2 font-playfair">60</p>
+              <p className="pl-2 font-playfair">
+                {projectData.comments.length}
+              </p>
             </div>
             <div className="flex cursor-pointer flex-row items-center hover:text-secondary-400">
               <ShareIcon />
@@ -36,7 +40,7 @@ export const ProjectPage = (props) => {
         <ProjectActionNavbar />
         <div className="my-6 flex w-full justify-center">
           <div className="w-1/2">
-            <Viewer />
+            <Editor project={projectData} />
           </div>
         </div>
       </Layout>
@@ -47,13 +51,25 @@ export const ProjectPage = (props) => {
 export default ProjectPage
 
 export async function getServerSideProps(ctx) {
-  const response = await fetch("http://localhost:3000/api/filemanagement").then(
-    (res) => res.json()
-  )
+  const { id } = ctx.query
+  const project = await fetch(
+    `${process.env.FILEMANAGER_PUBLIC_EXTERNAL}:${process.env.FILEMANAGER_PORT}/project/${id}`
+  ).then((res) => res.json())
 
-  return {
-    props: {
-      folders: response,
-    },
+  if (project.project) {
+    const {
+      project: { metaData, projectData },
+    } = project
+
+    return {
+      props: {
+        metaData,
+        projectData,
+      },
+    }
+  } else {
+    return {
+      notFound: true,
+    }
   }
 }

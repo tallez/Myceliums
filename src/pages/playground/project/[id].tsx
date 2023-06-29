@@ -3,7 +3,7 @@ import Head from "next/head"
 import { CommentIcon, LikeIcon, ShareIcon } from "@components/icons"
 import Layout from "@components/layout"
 import { ProjectActionNavbar, ProjectFileNavBar } from "@components/navbars"
-import Viewer from "@components/presentation/viewer"
+import Viewer from "@components/presentation/viewer/viewer"
 import Editor from "@components/presentation/editor/editor"
 
 export const ProjectPage = (props) => {

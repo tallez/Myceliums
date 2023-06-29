@@ -12,7 +12,7 @@ import {
 } from "@components/icons"
 import { ProjectFileNavBar } from "@components/navbars"
 import Editor from "@components/presentation/editor/editor"
-import Viewer from "@components/presentation/viewer"
+import Viewer from "@components/presentation/viewer/viewer"
 
 export default function GraphicChartPage() {
   return (

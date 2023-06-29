@@ -1,7 +1,7 @@
 export interface projectProps {
   title: string
   description?: string
-  elements: projectElementProps[],
+  elements: projectElementProps[]
   author: string
 }
 

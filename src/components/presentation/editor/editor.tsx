@@ -1,14 +1,16 @@
 import { Dispatch, SetStateAction, useState } from "react"
+
 import {
   projectElementProps,
   projectElementTypes,
   projectProps,
 } from "@interface/global"
-import { HeadingEditor } from "./elements/title"
-import { SubHeadingEditor } from "./elements/subtitle"
-import { ParagraphEditor } from "./elements/paragraph"
+
 import { AddElement } from "./elements/add"
+import { ParagraphEditor } from "./elements/paragraph"
 import { SaveButton } from "./elements/save"
+import { SubHeadingEditor } from "./elements/subtitle"
+import { HeadingEditor } from "./elements/title"
 
 const emptyProject = {
   title: "",

@@ -1,4 +1,5 @@
 import Image from "next/image"
+
 import { WarnIcon } from "@components/icons"
 import {
   projectElementProps,

@@ -1,5 +1,6 @@
-import { projectProps } from "@interface/global"
 import { Dispatch, SetStateAction, useRef } from "react"
+
+import { projectProps } from "@interface/global"
 
 export const ParagraphEditor = ({
   index,

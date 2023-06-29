@@ -4,7 +4,7 @@ import { CommentIcon, LikeIcon, ShareIcon } from "@components/icons"
 import Layout from "@components/layout"
 import { ProjectActionNavbar, ProjectFileNavBar } from "@components/navbars"
 import Viewer from "@components/presentation/viewer"
-import Editor from "@components/presentation/editor"
+import Editor from "@components/presentation/editor/editor"
 
 export const ProjectPage = (props) => {
   const { metaData, projectData } = props

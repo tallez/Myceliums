@@ -11,7 +11,7 @@ import {
   WarnIcon,
 } from "@components/icons"
 import { ProjectFileNavBar } from "@components/navbars"
-import Editor from "@components/presentation/editor"
+import Editor from "@components/presentation/editor/editor"
 import Viewer from "@components/presentation/viewer"
 
 export default function GraphicChartPage() {

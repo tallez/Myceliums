@@ -5,7 +5,7 @@ import { WarnIcon } from "@components/icons"
 interface projectProps {
   title: string
   description: string
-  content: projectElementProps[]
+  elements: projectElementProps[]
 }
 
 interface projectElementProps {
@@ -26,7 +26,7 @@ enum projectElementTypes {
 const exampleProject = {
   title: "Test Project",
   description: "this is a test project",
-  content: [
+  elements: [
     {
       type: projectElementTypes.heading,
       content: "The Project",
@@ -59,8 +59,8 @@ export default function Viewer({
   project?: projectProps
 }) {
   return (
-    <div className="space-y-4 rounded-lg border border-gray-200 p-4">
-      {project.content.map((projectElement, i) => {
+    <div className="p-4 space-y-4 border border-gray-200 rounded-lg">
+      {project.elements.map((projectElement, i) => {
         return <ProjectElement key={i} projectElement={projectElement} />
       })}
     </div>
@@ -74,18 +74,18 @@ const ProjectElement = ({
 }) => {
   if (projectElement.type === projectElementTypes.heading) {
     return (
-      <p className="mb-4 font-raleway text-xl font-bold text-primary-500">
+      <p className="mb-4 text-xl font-bold font-raleway text-primary-500">
         {projectElement.content}
       </p>
     )
   } else if (projectElement.type === projectElementTypes.subheading) {
-    return <p className="mb-2 font-raleway text-lg">{projectElement.content}</p>
+    return <p className="mb-2 text-lg font-raleway">{projectElement.content}</p>
   } else if (projectElement.type === projectElementTypes.paragraph) {
     return <p className="font-playfair">{projectElement.content}</p>
   } else if (projectElement.type === projectElementTypes.image) {
     if (projectElement.alt && projectElement.source) {
       return (
-        <div className="relative my-4 h-56 w-full">
+        <div className="relative w-full h-56 my-4">
           <Image
             className="rounded-lg"
             src={projectElement.source}
@@ -97,14 +97,14 @@ const ProjectElement = ({
       )
     } else {
       return (
-        <div className="relative my-4 flex h-12 w-full items-center justify-center space-x-2 rounded-lg bg-error-950 font-playfair text-error-400">
+        <div className="relative flex items-center justify-center w-full h-12 my-4 space-x-2 rounded-lg bg-error-950 font-playfair text-error-400">
           <WarnIcon /> <p>Image display error : There is no alt or no source</p>
         </div>
       )
     }
   } else if (projectElement.type === projectElementTypes.tip) {
     return (
-      <p className="rounded-lg bg-primary-900 p-2 font-playfair italic">
+      <p className="p-2 italic rounded-lg bg-primary-900 font-playfair">
         <strong>Tips : </strong>
         {projectElement.content}
       </p>

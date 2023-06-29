@@ -30,17 +30,17 @@ export const HeadingEditor = ({
   }
 
   const handleChange = (e) => {
-    const updatedContent = [...project.content]
+    const updatedContent = [...project.elements]
     updatedContent[index].content = e.target.value
-    setProject({ ...project, content: updatedContent })
+    setProject({ ...project, elements: updatedContent })
     adjustTextareaHeight()
   }
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete ?")) {
-      const updatedContent = [...project.content]
+      const updatedContent = [...project.elements]
       updatedContent.splice(index, 1)
-      setProject({ ...project, content: updatedContent })
+      setProject({ ...project, elements: updatedContent })
     }
   }
 
@@ -49,8 +49,8 @@ export const HeadingEditor = ({
       <textarea
         ref={textareaRef}
         onChange={(e) => handleChange(e)}
-        defaultValue={project.content[index].content || "Title ..."}
-        className="h-10 resize-none overflow-hidden border-none font-raleway text-2xl text-primary-500 focus:ring-transparent"
+        defaultValue={project.elements[index].content || "Title ..."}
+        className="h-10 w-full resize-none overflow-hidden border-none font-raleway text-2xl text-primary-500 focus:ring-transparent"
       />
       <svg
         onClick={() => handleDelete()}
@@ -89,17 +89,17 @@ export const SubHeadingEditor = ({
   }
 
   const handleChange = (e) => {
-    const updatedContent = [...project.content]
+    const updatedContent = [...project.elements]
     updatedContent[index].content = e.target.value
-    setProject({ ...project, content: updatedContent })
+    setProject({ ...project, elements: updatedContent })
     adjustTextareaHeight()
   }
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete ?")) {
-      const updatedContent = [...project.content]
+      const updatedContent = [...project.elements]
       updatedContent.splice(index, 1)
-      setProject({ ...project, content: updatedContent })
+      setProject({ ...project, elements: updatedContent })
     }
   }
 
@@ -108,8 +108,8 @@ export const SubHeadingEditor = ({
       <textarea
         ref={textareaRef}
         onChange={(e) => handleChange(e)}
-        defaultValue={project.content[index].content || "Subheading ..."}
-        className="h-10 resize-none overflow-hidden border-none font-raleway text-xl text-primary-200 focus:ring-transparent"
+        defaultValue={project.elements[index].content || "Subheading ..."}
+        className="h-10 w-full resize-none overflow-hidden border-none font-raleway text-xl text-primary-200 focus:ring-transparent"
       />
       <svg
         onClick={() => handleDelete()}
@@ -148,17 +148,17 @@ export const ParagraphEditor = ({
   }
 
   const handleChange = (e) => {
-    const updatedContent = [...project.content]
+    const updatedContent = [...project.elements]
     updatedContent[index].content = e.target.value
-    setProject({ ...project, content: updatedContent })
+    setProject({ ...project, elements: updatedContent })
     adjustTextareaHeight()
   }
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete ?")) {
-      const updatedContent = [...project.content]
+      const updatedContent = [...project.elements]
       updatedContent.splice(index, 1)
-      setProject({ ...project, content: updatedContent })
+      setProject({ ...project, elements: updatedContent })
     }
   }
 
@@ -167,8 +167,8 @@ export const ParagraphEditor = ({
       <textarea
         ref={textareaRef}
         onChange={(e) => handleChange(e)}
-        defaultValue={project.content[index].content || "Paragraph ..."}
-        className="h-10 resize-none overflow-hidden border-none font-playfair text-lg focus:ring-transparent"
+        defaultValue={project.elements[index].content || "Paragraph ..."}
+        className="h-10 w-full resize-none overflow-hidden border-none font-playfair text-lg focus:ring-transparent"
       />
       <svg
         onClick={() => handleDelete()}

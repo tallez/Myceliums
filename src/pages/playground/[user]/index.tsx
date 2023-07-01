@@ -1,10 +1,11 @@
+import { useSession } from "next-auth/react"
+import Head from "next/head"
+import Link from "next/link"
+
+import { MyceliumsAvatar } from "@components/icons"
 import Layout from "@components/layout"
 import { withAuth } from "@utils/nextauthwrapper"
-import { useSession } from "next-auth/react"
-import { MyceliumsAvatar } from "@components/icons"
-import Link from "next/link"
 import prisma from "lib/prisma"
-import Head from "next/head"
 
 function UserPage(props) {
   const { projects } = props
@@ -20,7 +21,6 @@ function UserPage(props) {
 
 const UserSpace = ({ projects }) => {
   const session = useSession()
-  console.log(projects)
   return (
     <div className="grid h-full w-full grid-cols-5">
       <div>
@@ -35,6 +35,7 @@ const UserSpace = ({ projects }) => {
         <div className="flex justify-between font-playfair text-xl">
           <p className="underline">Projects</p>
           <Link
+            passHref
             href={{
               pathname: "/playground/[user]/create",
               /* @ts-ignore no idea where to update the session type */
@@ -61,9 +62,11 @@ const UserSpace = ({ projects }) => {
           </Link>
         </div>{" "}
         <hr></hr>
-        {projects.map((project) => {
+        {projects.map((project, i) => {
           return (
             <Link
+              passHref
+              key={i}
               href={{
                 pathname: "/playground/project/[id]",
                 /* @ts-ignore no idea where to update the session type */

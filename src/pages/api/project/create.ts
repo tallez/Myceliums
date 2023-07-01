@@ -1,5 +1,6 @@
-import prisma from "lib/prisma"
 import { NextApiRequest, NextApiResponse } from "next"
+
+import prisma from "lib/prisma"
 
 export default async function handler(
   req: NextApiRequest,
@@ -30,7 +31,7 @@ export default async function handler(
             }
           )
         } catch (err) {
-          console.log(err)
+          console.error(err)
         }
         try {
           await fetch(
@@ -50,7 +51,7 @@ export default async function handler(
             }
           )
         } catch (err) {
-          console.log(err)
+          console.error(err)
         }
         await fetch(
           `${process.env.FILEMANAGER_PUBLIC_EXTERNAL}:${process.env.FILEMANAGER_PORT}/folder`,
@@ -88,17 +89,15 @@ export default async function handler(
           }
         )
 
-        res
-          .status(200)
-          .json({
-            success: true,
-            projectId: newProject.id,
-            message: `Project ${newProject.id} created`,
-          })
+        res.status(200).json({
+          success: true,
+          projectId: newProject.id,
+          message: `Project ${newProject.id} created`,
+        })
 
         break // Add break statement here
       } catch (e) {
-        console.log(e)
+        console.error(e)
         res.status(500).json(e)
         break // Add break statement here
       }

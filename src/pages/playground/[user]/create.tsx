@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react"
 
-import Layout from "@components/layout"
-import { withAuth } from "@utils/nextauthwrapper"
 import { useSession } from "next-auth/react"
 import Head from "next/head"
-import { HomeIcon } from "@components/icons"
 import Link from "next/link"
 import { useRouter } from "next/router"
+
+import { HomeIcon } from "@components/icons"
+import Layout from "@components/layout"
+import { withAuth } from "@utils/nextauthwrapper"
 
 function CreateProjectPage() {
   return (
@@ -83,6 +84,7 @@ const CreateProjectFrame = () => {
     <div className="flex w-full justify-center">
       <div className="w-1/2">
         <Link
+          passHref
           href={{
             pathname: "/playground/[user]",
             /* @ts-ignore no idea where to update the session type */

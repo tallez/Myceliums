@@ -10,7 +10,7 @@ export const LoadingIcon = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-6 h-6 text-white animate-spin"
+      className="h-6 w-6 animate-spin text-white"
     >
       <path
         strokeLinecap="round"
@@ -29,7 +29,7 @@ export const ValidateIcon = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-6 h-6"
+      className="h-6 w-6"
     >
       <path
         strokeLinecap="round"
@@ -48,7 +48,7 @@ export const PullRequestIcon = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-6 h-6"
+      className="h-6 w-6"
     >
       <path
         strokeLinecap="round"
@@ -67,7 +67,7 @@ export const IssueIcon = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-6 h-6"
+      className="h-6 w-6"
     >
       <path
         strokeLinecap="round"
@@ -97,7 +97,7 @@ export const WarnIcon = ({ toolTip }: { toolTip?: string }) => {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="w-6 h-6"
+        className="h-6 w-6"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -108,7 +108,7 @@ export const WarnIcon = ({ toolTip }: { toolTip?: string }) => {
         />
       </svg>
       {showTooltip && (
-        <div className="absolute left-0 px-2 py-1 text-white text-gray-700 bg-gray-100 bg-red-500 rounded-md shadow-md bottom-8 whitespace-nowrap">
+        <div className="absolute left-0 bottom-8 whitespace-nowrap rounded-md bg-gray-100 bg-red-500 px-2 py-1 text-white text-gray-700 shadow-md">
           {toolTip}
         </div>
       )}
@@ -124,7 +124,7 @@ export const PlusIcon = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-6 h-6"
+      className="h-6 w-6"
     >
       <path
         strokeLinecap="round"
@@ -143,7 +143,7 @@ export const LikeIcon = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-4 h-4"
+      className="h-4 w-4"
     >
       <path
         strokeLinecap="round"
@@ -162,7 +162,7 @@ export const CommentIcon = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-4 h-4"
+      className="h-4 w-4"
     >
       <path
         strokeLinecap="round"
@@ -181,7 +181,7 @@ export const ShareIcon = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-4 h-4"
+      className="h-4 w-4"
     >
       <path
         strokeLinecap="round"
@@ -194,7 +194,7 @@ export const ShareIcon = () => {
 
 export const MyceliumsLogo = () => {
   return (
-    <div className="relative w-12 h-12">
+    <div className="relative h-12 w-12">
       <Image
         src="/myceliums-logo.svg"
         alt="Logo"
@@ -207,7 +207,7 @@ export const MyceliumsLogo = () => {
 
 export const MyceliumsAvatar = () => {
   return (
-    <div className="relative flex items-center justify-center w-10 h-10 rounded-full shadow-inner cursor-pointer bg-primary-500 hover:bg-primary-400">
+    <div className="relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary-500 shadow-inner hover:bg-primary-400">
       <Image
         src="/myceliums-avatar.png"
         alt="Logo"
@@ -226,7 +226,7 @@ export const HomeIcon = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-4 h-4"
+      className="h-4 w-4"
     >
       <path
         strokeLinecap="round"

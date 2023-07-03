@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useRef } from "react"
 
-import { projectProps } from "@interface/global"
+import { projectElementProps } from "@interface/global"
 
 export const ParagraphEditor = ({
   index,
@@ -8,8 +8,8 @@ export const ParagraphEditor = ({
   setProject,
 }: {
   index: number
-  project: projectProps
-  setProject: Dispatch<SetStateAction<projectProps>>
+  project: projectElementProps[]
+  setProject: Dispatch<SetStateAction<projectElementProps[]>>
 }) => {
   const textareaRef = useRef(null)
 
@@ -20,17 +20,18 @@ export const ParagraphEditor = ({
   }
 
   const handleChange = (e) => {
-    const updatedContent = [...project.elements]
+    const updatedContent = project
     updatedContent[index].content = e.target.value
-    setProject({ ...project, elements: updatedContent })
+    console.log(updatedContent)
+    setProject(updatedContent)
     adjustTextareaHeight()
   }
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete ?")) {
-      const updatedContent = [...project.elements]
+      const updatedContent = project
       updatedContent.splice(index, 1)
-      setProject({ ...project, elements: updatedContent })
+      setProject(updatedContent)
     }
   }
 
@@ -39,7 +40,7 @@ export const ParagraphEditor = ({
       <textarea
         ref={textareaRef}
         onChange={(e) => handleChange(e)}
-        defaultValue={project.elements[index].content || "Paragraph ..."}
+        defaultValue={project[index].content || "Paragraph ..."}
         className="h-10 w-full resize-none overflow-hidden border-none font-playfair text-lg focus:ring-transparent"
       />
       <svg

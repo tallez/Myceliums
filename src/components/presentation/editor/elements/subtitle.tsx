@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useRef } from "react"
 
-import { projectProps } from "@interface/global"
+import { projectElementProps, projectProps } from "@interface/global"
 
 export const SubHeadingEditor = ({
   index,
@@ -8,8 +8,8 @@ export const SubHeadingEditor = ({
   setProject,
 }: {
   index: number
-  project: projectProps
-  setProject: Dispatch<SetStateAction<projectProps>>
+  project: projectElementProps[]
+  setProject: Dispatch<SetStateAction<projectElementProps[]>>
 }) => {
   const textareaRef = useRef(null)
 
@@ -20,17 +20,17 @@ export const SubHeadingEditor = ({
   }
 
   const handleChange = (e) => {
-    const updatedContent = [...project.elements]
+    const updatedContent = project
     updatedContent[index].content = e.target.value
-    setProject({ ...project, elements: updatedContent })
+    setProject(updatedContent)
     adjustTextareaHeight()
   }
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete ?")) {
-      const updatedContent = [...project.elements]
+      const updatedContent = [...project]
       updatedContent.splice(index, 1)
-      setProject({ ...project, elements: updatedContent })
+      setProject(updatedContent)
     }
   }
 
@@ -39,7 +39,7 @@ export const SubHeadingEditor = ({
       <textarea
         ref={textareaRef}
         onChange={(e) => handleChange(e)}
-        defaultValue={project.elements[index].content || "Subheading ..."}
+        defaultValue={project[index].content || "Subheading ..."}
         className="h-10 w-full resize-none overflow-hidden border-none font-raleway text-xl text-primary-200 focus:ring-transparent"
       />
       <svg

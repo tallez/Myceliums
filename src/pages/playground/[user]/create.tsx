@@ -48,7 +48,7 @@ const CreateProjectFrame = () => {
       setError("Project needs a description")
     } else {
       try {
-        const projectCreation = await fetch("/api/project/create", {
+        const projectCreation = await fetch("/api/project", {
           method: "POST",
           headers: {
             "Content-type": "application/json",

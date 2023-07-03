@@ -1,6 +1,10 @@
 import { Dispatch, SetStateAction, useState } from "react"
 
-import { projectElementTypes, projectProps } from "@interface/global"
+import {
+  projectElementProps,
+  projectElementTypes,
+  projectProps,
+} from "@interface/global"
 
 const availableElements = [
   {
@@ -15,19 +19,22 @@ export const AddElement = ({
   project,
   setProject,
 }: {
-  project: projectProps
-  setProject: Dispatch<SetStateAction<projectProps>>
+  project: projectElementProps[]
+  setProject: Dispatch<SetStateAction<projectElementProps[]>>
 }) => {
   const [isActive, setIsActive] = useState(false)
+
   const handleChoice = (type: projectElementTypes) => {
     const newElement = {
+      id: project.length.toString(),
       type: type,
       content: "",
     }
-    const newContent = [...project.elements, newElement]
-    setProject({ ...project, elements: newContent })
+    const newContent = [...project, newElement]
+    setProject(newContent)
     setIsActive(false)
   }
+
   return (
     <div className="my-6 flex flex-row items-center justify-start space-x-2 px-2">
       <svg

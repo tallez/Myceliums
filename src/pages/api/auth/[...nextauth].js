@@ -7,6 +7,24 @@ import { comparePasswords } from "@utils/passwords-encrypt"
 
 import prisma from "../../../../lib/prisma"
 
+class CustomPrismaAdapter extends PrismaAdapter {
+  async createUser(profile) {
+    // Custom logic to create a user in your Prisma schema
+    // based on the profile data received from the provider
+    // You can override any other methods as needed
+    return prisma.user.create({
+      data: {
+        email: profile.email,
+        name: profile.name,
+        image: profile.image,
+        emailVerified: profile.email_verified || false,
+      },
+    })
+  }
+}
+
+const customPrismaAdapter = new CustomPrismaAdapter(prisma)
+
 export default NextAuth({
   providers: [
     Credentials({
@@ -34,11 +52,11 @@ export default NextAuth({
             password: true,
             email: true,
             name: true,
-            emailConfirmed: true,
+            emailVerified: true,
           },
         })
         if (user && (await comparePasswords(password, user.password))) {
-          if (user.emailConfirmed) {
+          if (user.emailVerified) {
             return user
           } else {
             throw new Error("Email not confirmed")
@@ -60,8 +78,9 @@ export default NextAuth({
       },
     }),
   ],
-  adapter: PrismaAdapter(prisma),
+  adapter: customPrismaAdapter,
   secret: process.env.NEXTAUTH_SECRET,
+  debug: true,
   session: {
     strategy: "jwt",
   },
@@ -94,7 +113,7 @@ export default NextAuth({
       return Promise.resolve(
         callbackUrl === baseUrl + "/api/auth/callback/[provider]"
           ? "/playground" // Redirect to /playground on successful authentication
-          : "/custom-url" // Redirect to a custom URL on unsuccessful authentication
+          : "/login?error=An%20Error%20Occured" // Redirect to a custom URL on unsuccessful authentication
       )
     },
   },

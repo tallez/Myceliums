@@ -29,10 +29,10 @@ export default function ConfirmPage(props) {
 
   if (isConfirmed) {
     return (
-      <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-br from-primary-600 to-primary-700 text-gray-700">
+      <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-br from-primary-600 to-primary-700 text-black">
         <div className="flex flex-col items-center justify-center text-center">
           <h1 className="mb-4 font-raleway text-3xl font-bold">
-            Great ! Now you are a Mushroom ...
+            Welcome to the Mushroom family !
           </h1>
           <Link passHref href={"/login"}>
             <p className="cursor-pointer text-xl hover:underline">
@@ -40,7 +40,7 @@ export default function ConfirmPage(props) {
             </p>
           </Link>
           <Image
-            src="/myceliums-valid.png"
+            src="/myceliums-logo.svg"
             width={200}
             height={200}
             alt={"Logo"}
@@ -79,7 +79,7 @@ export const getServerSideProps = async (req) => {
         id: confirmId,
       },
       data: {
-        emailConfirmed: true,
+        emailVerified: true,
       },
     })
     return {

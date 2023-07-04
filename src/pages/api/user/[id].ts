@@ -15,7 +15,7 @@ export default async function handler(
             id: id as string, // Assuming confirmId is accessible here
           },
         })
-        res.status(200).json(user?.emailConfirmed || false)
+        res.status(200).json(user?.emailVerified || false)
       } catch (e) {
         res.status(500).json(e)
       }

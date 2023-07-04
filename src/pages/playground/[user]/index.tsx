@@ -20,6 +20,7 @@ function UserPage(props) {
 }
 
 const UserSpace = ({ projects }) => {
+  // This page is where the user can see the projects he has created
   const session = useSession()
   return (
     <div className="grid h-full w-full grid-cols-5">

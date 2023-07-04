@@ -8,7 +8,6 @@ import { getProject } from "@utils/shiitake-client"
 
 export const ProjectPage = (props) => {
   const { metaData, projectData, id } = props
-  console.log(projectData)
   return (
     <>
       <Head>

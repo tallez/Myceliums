@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useRef } from "react"
+import { Dispatch, SetStateAction, useEffect, useRef } from "react"
 
 import { projectElementProps } from "@interface/global"
 
@@ -12,6 +12,10 @@ export const ParagraphEditor = ({
   setProject: Dispatch<SetStateAction<projectElementProps[]>>
 }) => {
   const textareaRef = useRef(null)
+
+  useEffect(() => {
+    adjustTextareaHeight()
+  }, [])
 
   const adjustTextareaHeight = () => {
     const textarea = textareaRef.current
@@ -29,7 +33,7 @@ export const ParagraphEditor = ({
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete ?")) {
-      const updatedContent = project
+      const updatedContent = [...project]
       updatedContent.splice(index, 1)
       setProject(updatedContent)
     }
@@ -50,7 +54,7 @@ export const ParagraphEditor = ({
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className={`absolute top-0 right-0 h-6 w-6 rotate-45 cursor-pointer text-gray-400 text-error-700 transition-all duration-150 hover:text-error-200`}
+        className={`absolute top-0 right-0 h-4 w-4 rotate-45 cursor-pointer text-gray-400 text-error-700 transition-all duration-150 hover:text-error-200`}
       >
         <path
           strokeLinecap="round"

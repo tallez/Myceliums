@@ -13,7 +13,7 @@ function CreateProjectPage() {
   return (
     <Layout>
       <Head>
-        <title>Projects</title>
+        <title>New Project</title>
       </Head>
       <CreateProjectFrame />
     </Layout>
@@ -21,18 +21,24 @@ function CreateProjectPage() {
 }
 
 const CreateProjectFrame = () => {
+  // Use session to identify the owner of the project creator
   const session = useSession()
+  // Router to redirect when project created
   const router = useRouter()
+  // Check if errors in form
   const [error, setError] = useState<boolean | string>()
+  // Create the metaData for the project as an object to be store in a Json
   const [metaData, setMetaData] = useState({})
 
   const handleChange = (e) => {
+    // Add any changes in the form as key value pair in the metaData variable
     setError(false)
     const { name, value } = e.target
     setMetaData({ ...metaData, [name]: value })
   }
 
   useEffect(() => {
+    // The session load after preload of the page, needing the useEffect to look for updating
     setMetaData({
       ...metaData,
       author: session && session.data.user.name,
@@ -42,13 +48,15 @@ const CreateProjectFrame = () => {
   }, [session])
 
   const createProject = async () => {
+    // First check for errors, and then create the project if successful.
     if (!metaData["title"]) {
       setError("Project needs a title")
     } else if (!metaData["description"]) {
       setError("Project needs a description")
     } else {
       try {
-        const projectCreation = await fetch("/api/project/create", {
+        // Passing the necessary data to the API, the init of the other fields will be done there.
+        const projectCreation = await fetch("/api/project", {
           method: "POST",
           headers: {
             "Content-type": "application/json",
@@ -66,6 +74,7 @@ const CreateProjectFrame = () => {
         }).then((res) => res.json())
 
         if (projectCreation.success) {
+          // redirect in case of sucess to the page of the newly created project.
           router.push({
             pathname: "/playground/project/[id]",
             /* @ts-ignore no idea where to update the session type */
@@ -79,7 +88,7 @@ const CreateProjectFrame = () => {
       }
     }
   }
-
+  // Form
   return (
     <div className="flex w-full justify-center">
       <div className="w-1/2">
@@ -101,7 +110,8 @@ const CreateProjectFrame = () => {
         <h2 className="font-raleway text-2xl">Create a new project</h2>
         <p className="mt-4">
           A projects contains all project files, including the revision history.
-          Already have a project repository elsewhere? Import a repository.
+          From here, you will be able to store your work and open it for the
+          world to collaborate !
         </p>
         <hr className="my-2"></hr>
         <p className="italic">

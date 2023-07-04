@@ -1,10 +1,6 @@
-import { Dispatch, SetStateAction, useState } from "react"
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
 
-import {
-  projectElementProps,
-  projectElementTypes,
-  projectProps,
-} from "@interface/global"
+import { projectElementProps, projectElementTypes } from "@interface/global"
 
 import { AddElement } from "./elements/add"
 import { ParagraphEditor } from "./elements/paragraph"
@@ -12,28 +8,19 @@ import { SaveButton } from "./elements/save"
 import { SubHeadingEditor } from "./elements/subtitle"
 import { HeadingEditor } from "./elements/title"
 
-const emptyProject = {
-  title: "",
-  elements: [],
-  author: "",
-}
-
 export default function Editor({
-  project = emptyProject,
+  project,
+  id,
 }: {
-  project?: projectProps
+  project?: projectElementProps[]
+  id: string
 }) {
-  const [currProject, setCurrProject] = useState<projectProps>(project)
+  const [currProject, setCurrProject] = useState<projectElementProps[]>(project)
 
   return (
     <div className="flex flex-col rounded-xl border border-gray-200 p-4">
-      <div className="flex flex-col px-4 font-playfair italic">
-        <p>{currProject.title}</p>
-        <p>Tag(s)</p>
-        <p>{currProject.author}</p>
-      </div>
       <hr className="my-4"></hr>
-      {currProject.elements.map((projectElement, i) => {
+      {currProject.map((projectElement, i) => {
         return (
           <ProjectElement
             key={i}
@@ -46,7 +33,8 @@ export default function Editor({
       })}
       <AddElement setProject={setCurrProject} project={currProject} />
       <div className="flex w-full justify-end">
-        <SaveButton project={project} />
+        {" "}
+        <SaveButton project={currProject} projectId={id} />
       </div>
     </div>
   )
@@ -60,8 +48,8 @@ const ProjectElement = ({
 }: {
   projectElement: projectElementProps
   index: number
-  project: projectProps
-  setProject: Dispatch<SetStateAction<projectProps>>
+  project: projectElementProps[]
+  setProject: Dispatch<SetStateAction<projectElementProps[]>>
 }) => {
   if (projectElement.type === projectElementTypes.heading) {
     return (

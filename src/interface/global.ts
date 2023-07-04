@@ -19,3 +19,11 @@ export enum projectElementTypes {
   image = "image",
   tip = "tip",
 }
+
+export enum projectUpdateActions {
+  createFolder = "createFolder",
+  deleteFolder = "deleteFolder",
+  writeFile = "writeFile",
+  deleteFile = "deleteFile",
+  updateFile = "updateFile",
+}

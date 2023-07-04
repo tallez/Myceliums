@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction, useRef } from "react"
+import { Dispatch, SetStateAction, useEffect, useRef } from "react"
 
-import { projectProps } from "@interface/global"
+import { projectElementProps } from "@interface/global"
 
 export const ParagraphEditor = ({
   index,
@@ -8,10 +8,14 @@ export const ParagraphEditor = ({
   setProject,
 }: {
   index: number
-  project: projectProps
-  setProject: Dispatch<SetStateAction<projectProps>>
+  project: projectElementProps[]
+  setProject: Dispatch<SetStateAction<projectElementProps[]>>
 }) => {
   const textareaRef = useRef(null)
+
+  useEffect(() => {
+    adjustTextareaHeight()
+  }, [])
 
   const adjustTextareaHeight = () => {
     const textarea = textareaRef.current
@@ -20,17 +24,18 @@ export const ParagraphEditor = ({
   }
 
   const handleChange = (e) => {
-    const updatedContent = [...project.elements]
+    const updatedContent = project
     updatedContent[index].content = e.target.value
-    setProject({ ...project, elements: updatedContent })
+    console.log(updatedContent)
+    setProject(updatedContent)
     adjustTextareaHeight()
   }
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete ?")) {
-      const updatedContent = [...project.elements]
+      const updatedContent = [...project]
       updatedContent.splice(index, 1)
-      setProject({ ...project, elements: updatedContent })
+      setProject(updatedContent)
     }
   }
 
@@ -39,7 +44,7 @@ export const ParagraphEditor = ({
       <textarea
         ref={textareaRef}
         onChange={(e) => handleChange(e)}
-        defaultValue={project.elements[index].content || "Paragraph ..."}
+        defaultValue={project[index].content || "Paragraph ..."}
         className="h-10 w-full resize-none overflow-hidden border-none font-playfair text-lg focus:ring-transparent"
       />
       <svg
@@ -49,7 +54,7 @@ export const ParagraphEditor = ({
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className={`absolute top-0 right-0 h-6 w-6 rotate-45 cursor-pointer text-gray-400 text-error-700 transition-all duration-150 hover:text-error-200`}
+        className={`absolute top-0 right-0 h-4 w-4 rotate-45 cursor-pointer text-gray-400 text-error-700 transition-all duration-150 hover:text-error-200`}
       >
         <path
           strokeLinecap="round"

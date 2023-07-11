@@ -10,7 +10,7 @@ export const SaveButton = ({
   project: projectElementProps[]
 }) => {
   const handleClick = async () => {
-    const projectUpdate = await fetch("/api/project", {
+    await fetch("/api/project", {
       method: "PUT",
       headers: {
         "Content-type": "application/json",

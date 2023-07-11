@@ -17,6 +17,10 @@ export default function Editor({
 }) {
   const [currProject, setCurrProject] = useState<projectElementProps[]>(project)
 
+  useEffect(() => {
+    setCurrProject(project)
+  }, [project])
+
   return (
     <div className="flex flex-col rounded-xl border border-gray-200 p-4">
       <hr className="my-4"></hr>
